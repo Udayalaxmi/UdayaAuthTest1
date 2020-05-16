@@ -59,7 +59,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'sample.urls'
+ROOT_URLCONF = 'udayahapp.urls'
 
 TEMPLATES = [
     {
