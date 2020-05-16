@@ -32,17 +32,19 @@ alert("in login.html");
 
 
     var oktaSignIn = new OktaSignIn({
-        baseUrl: '{{config.url}}',
-        clientId: '{{config.clientId}}',
-        redirectUri: '{{config.redirectUri}}',
+        baseUrl: 'https://dev-777014.okta.com',
+        clientId: '0oac9i3quU1YGYK3q4x6',
+        redirectUri: 'https://stark-ridge-55239.herokuapp.com/oauth2/callback/',
         authParams: {
-            issuer: '{{config.issuer}}',
+            issuer: 'https://dev-777014.okta.com/oauth2/default',
             responseType: ['code'],
-            scopes: "{{config.scope}}".split(" ")
+            scopes: "openid profile email".split(" ")
         },
 
 
     });
+    alert("configurl")
+
     oktaSignIn.renderEl(
         {el: '#okta-login-container'},
         function (res) {

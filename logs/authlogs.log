@@ -1,7 +1,16 @@
 INFO       2020-05-16 12:29:26,829 views:49: login_controller() started
-INFO       2020-05-16 12:30:49,088 views:49: viewmyapp login_controller() started
-INFO       2020-05-16 12:33:50,561 views:49: viewmyapp login_controller() started
-INFO       2020-05-16 12:33:52,377 views:49: viewmyapp login_controller() started
-INFO       2020-05-16 12:35:06,975 views:49: viewmyapp login_controller() started
-INFO       2020-05-16 12:35:40,351 views:49: viewmyapp login_controller() started
-INFO       2020-05-16 12:46:19,638 views:55: viewmyapp login_controller() started
+
+INFO       2020-05-16 14:30:30,501 tokens:18: in class TokenValidator() started
+INFO       2020-05-16 14:30:39,143 tokens:18: in class TokenValidator() started
+INFO       2020-05-16 14:30:45,752 views:55: viewmyapp login_controller() started
+INFO       2020-05-16 14:32:52,560 tokens:18: in class TokenValidator() started
+INFO       2020-05-16 14:34:28,781 tokens:18: in class TokenValidator() started
+INFO       2020-05-16 14:36:19,252 tokens:18: in class TokenValidator() started
+INFO       2020-05-16 14:36:28,282 views:55: viewmyapp login_controller() started
+INFO       2020-05-16 14:42:43,016 tokens:18: in class TokenValidator() started
+INFO       2020-05-16 14:42:59,224 tokens:18: in class TokenValidator() started
+INFO       2020-05-16 14:43:14,613 tokens:18: in class TokenValidator() started
+INFO       2020-05-16 14:43:24,408 views:55: viewmyapp login_controller() started
+INFO       2020-05-16 14:55:49,548 tokens:18: in class TokenValidator() started
+INFO       2020-05-16 14:55:58,515 views:55: viewmyapp login_controller() started
+INFO       2020-05-16 15:06:11,852 tokens:18: in class TokenValidator() started

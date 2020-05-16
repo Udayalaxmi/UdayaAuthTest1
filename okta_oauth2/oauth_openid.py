@@ -1,8 +1,17 @@
 import requests
 import base64
+import logging,sys
+import os
 
+LOG_FILE_PATH = './logs'
+LOG_FILE_NAME = os.path.join(LOG_FILE_PATH,'authlogs.log')
+LOGGER_NAME = 'oauth2log'
 
 def call_userinfo_endpoint(issuer, token):
+    # Get an instance of a logger
+    log = logging.getLogger(LOGGER_NAME)
+    log.info('call_userinfo_endpoint() started')
+
     # Calls /userinfo endpoint with a valid access_token to fetch user information scoped to the access token
 
     header = {'Authorization': 'Bearer {}'.format(token)}
@@ -15,6 +24,8 @@ def call_userinfo_endpoint(issuer, token):
 
 
 def call_introspect(issuer, token, config):
+    log = logging.getLogger(LOGGER_NAME)
+    log.info('call_introspect() started')
     # Calls /introspect endpoint to check if accessToken is valid
 
     header = _build_header(config)
@@ -32,6 +43,8 @@ def call_introspect(issuer, token, config):
 
 
 def call_revocation(issuer, token, config):
+    log = logging.getLogger(LOGGER_NAME)
+    log.info('call_revocation() started')
     # Calls /revocation endpoint to revoke current accessToken
     header = _build_header(config)
     data = {'token': token}
@@ -44,6 +57,8 @@ def call_revocation(issuer, token, config):
 
 
 def _build_header(config):
+    log = logging.getLogger(LOGGER_NAME)
+    log.info('_build_header() started')
     # Builds the header for sending requests
 
     basic = '{}:{}'.format(config.client_id, config.client_secret)
