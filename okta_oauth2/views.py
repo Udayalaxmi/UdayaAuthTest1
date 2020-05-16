@@ -16,9 +16,14 @@ from .oauth_openid import call_userinfo_endpoint, call_introspect, call_revocati
 # GLOBALS
 config = Config()
 token_manager = TokenManager()
-
+import logging
+from . import *
 
 def get_context(request):
+    # Get an instance of a logger
+    log = logging.getLogger(LOGGER_NAME)
+    log.info('get_context() started')
+
     context = {'active': True}
     if 'tokens' in request.session:
         context['tokens'] = request.session['tokens']
@@ -39,6 +44,10 @@ def get_context(request):
 
 
 def login_controller(request):
+    # Get an instance of a logger
+    log = logging.getLogger(LOGGER_NAME)
+    log.info('viewmyapp login_controller() started')
+
     okta_config = {
         'clientId': config.client_id,
         'url': config.org_url,
@@ -54,9 +63,19 @@ def login_controller(request):
 
 
 def callback_controller(request):
+    # Get an instance of a logger
+    log = logging.getLogger(LOGGER_NAME)
+    log.info('callback_controller() started')
+
     def _token_request(auth_code, nonce):
         # authorization_code flow. Exchange the auth_code for id_token and/or access_token
         user = None
+
+        log.info("callback_controller")
+        log.info("udaya_auth_code : %s", auth_code)
+        log.info("nonce : %s", nonce)
+        log.info("config : %s", config)
+        log.info("request %s",request)
 
         validator = TokenValidator(config)
         tokens = validator.call_token_endpoint(auth_code)
@@ -77,10 +96,18 @@ def callback_controller(request):
         return user, token_manager.getJson()
 
     if request.POST:
+
+        log.info("udaya Endpoint not supported" )
+
         return HttpResponse({'error': 'Endpoint not supported'})
     else:
+
         code = request.GET['code']
         state = request.GET['state']
+
+        log.info("udaya code %s", code )
+        log.info("udaya state %s", state)
+
 
         # Get state and nonce from cookie
         cookie_state = request.COOKIES["okta-oauth-state"]
@@ -114,7 +141,7 @@ def revocation_controller(request):
     if request.POST:
 
         access_token = request.POST.get('accessToken')
-
+        log.info("revocation_controller : access_token : %s", access_token)
         discovery_doc = DiscoveryDocument(config.issuer).getJson()
 
         revocation = call_revocation(discovery_doc['issuer'], access_token, config)
@@ -135,6 +162,7 @@ def introspect_controller(request):
     if request.POST:
 
         access_token = request.POST.get('accessToken')
+        log.info("introspect_controller : access_token : %s", access_token)
 
         discovery_doc = DiscoveryDocument(config.issuer).getJson()
 
@@ -154,6 +182,7 @@ def userinfo_controller(request):
     if request.POST:
         # Build token request
         access_token = request.POST.get('accessToken')
+        log.info("userinfo_controller : access_token : %s", access_token)
 
         # Send request
         userInfo = call_userinfo_endpoint(config.issuer, access_token)
@@ -169,11 +198,15 @@ def userinfo_controller(request):
 def logout_controller(request):
     logout(request)
     token_manager = None
+    log.info("logout_controller : request : %s", request)
+
     return HttpResponseRedirect(reverse('login_controller'))
 
 
 def _get_user_by_username(username):
     try:
+        log.info("_get_user_by_username : username : %s", username)
+
         user = User.objects.get(username=username)
     except User.DoesNotExist:
         return None
@@ -182,6 +215,8 @@ def _get_user_by_username(username):
 
 def _validate_user(claims):
     # Create user for django session
+    log.info("_validate_user : claims : %s", claims['email'])
+
     user = _get_user_by_username(claims['email'])
     if user is None:
         # Create user

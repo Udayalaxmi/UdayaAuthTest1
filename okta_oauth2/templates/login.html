@@ -28,6 +28,9 @@
 </div>
 
 <script type="text/javascript">
+alert("in login.html");
+
+
     var oktaSignIn = new OktaSignIn({
         baseUrl: '{{config.url}}',
         clientId: '{{config.clientId}}',
@@ -37,6 +40,8 @@
             responseType: ['code'],
             scopes: "{{config.scope}}".split(" ")
         },
+
+
     });
     oktaSignIn.renderEl(
         {el: '#okta-login-container'},
