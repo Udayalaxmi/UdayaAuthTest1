@@ -45,8 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'okta_oauth2',
-    'herokuapp'
+    'okta_oauth2'
+    
 ]
 
 MIDDLEWARE = [
