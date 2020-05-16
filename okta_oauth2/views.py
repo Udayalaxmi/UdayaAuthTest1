@@ -12,6 +12,12 @@ from .decorators import okta_login_required
 import json
 from .tokens import TokenValidator
 from .oauth_openid import call_userinfo_endpoint, call_introspect, call_revocation
+import logging,sys
+import os
+
+LOG_FILE_PATH = './logs'
+LOG_FILE_NAME = os.path.join(LOG_FILE_PATH,'authlogs.log')
+LOGGER_NAME = 'oauth2log'
 
 # GLOBALS
 config = Config()
