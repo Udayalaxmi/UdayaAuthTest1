@@ -25,7 +25,7 @@ SECRET_KEY = '&kmj24lv5@ry@weq_!d)sy=lh-e*b5cqgap7x%1rpj@nkpwejj'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['stark-ridge-55239.herokuapp.com']
 
 # Okta Configuration
 ORG_URL = os.environ.get('ORG_URL')
