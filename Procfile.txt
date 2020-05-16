@@ -1,0 +1,2 @@
+#Procfile
+web: gunicorn udayahapp.wsgi --log-file -
