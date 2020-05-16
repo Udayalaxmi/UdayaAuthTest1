@@ -1,2 +1,2 @@
 #Procfile
-web: gunicorn UdayaAuthTest1.wsgi --log-file -
+web: gunicorn sample.wsgi --log-file -
