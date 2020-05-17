@@ -21,6 +21,9 @@ class Config:
 class DiscoveryDocument:
     # Find the OIDC metadata through discovery
     def __init__(self, issuer_uri):
+
+        print("issuer_uri: {}".format(issuer_uri))
+        issuer_uri = "https://dev-777014.okta.com/oauth2/default"
         r = requests.get(issuer_uri + "/.well-known/openid-configuration")
         self.json = r.json()
 

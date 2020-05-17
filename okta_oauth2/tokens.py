@@ -15,12 +15,12 @@ LOGGER_NAME = 'oauth2log'
 class TokenValidator(object):
     # Get an instance of a logger
     log = logging.getLogger(LOGGER_NAME)
-    log.info('in class TokenValidator() started')
+    print('in class TokenValidator() started')
     def __init__(self, config, keys=[]):
         log = logging.getLogger(LOGGER_NAME)
-        log.info('in  TokenValidator init() started')
-        log.info('params....', config)
-        log.info('params.keys...', keys)
+        print('in  TokenValidator init() started')
+        print('params....', config)
+        print('params.keys...', keys)
         self.config = config
         self.keys = keys
 
@@ -29,7 +29,7 @@ class TokenValidator(object):
             Returns accessToken, idToken, or both
         """
         log = logging.getLogger(LOGGER_NAME)
-        log.info('call_token_endpoint() started')
+        print('call_token_endpoint() started')
         discovery_doc = DiscoveryDocument(self.config.issuer).getJson()
         token_endpoint = discovery_doc['token_endpoint']
 
@@ -63,7 +63,7 @@ class TokenValidator(object):
 
     def validate_token(self, token, nonce):
         log = logging.getLogger(LOGGER_NAME)
-        log.info('in validate_token() started')
+        print('in validate_token() started')
         """
             Validate token
              (Taken from http://openid.net/specs/openid-connect-core-1_0.html#TokenResponseValidation)
