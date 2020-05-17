@@ -39,7 +39,9 @@ class TokenValidator(object):
             'Authorization': 'Basic: ' + authorization_header.decode("utf-8"),
             'Content-Type': 'application/x-www-form-urlencoded'
         }
-
+        print('self.config.scopes : ')
+        print(self.config.scopes)
+        self.config.scopes = "openid profile email"
         data = {
             'grant_type': self.config.grant_type,
             'code': str(auth_code),
