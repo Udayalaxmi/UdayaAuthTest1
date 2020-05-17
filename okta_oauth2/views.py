@@ -61,10 +61,10 @@ def login_controller(request):
         'scope': config.scopes,
         'issuer': config.issuer
     }
-    print("Changing redirect page")
-    response = render(request, 'redirectpage.html', {'config': okta_config})
+    print("redirecting..")
+    #response = render(request, 'redirectpage.html', {'config': okta_config})
 
-    #response = render(request, 'login.html', {'config': okta_config})
+    response = render(request, 'login.html', {'config': okta_config})
 
     _delete_cookies(response)
  
@@ -92,6 +92,7 @@ def callback_controller(request):
         if tokens is not None:
             if 'id_token' in tokens:
                 # Perform token validation
+                print("inside for token validation")
                 claims = validator.validate_token(tokens['id_token'], nonce)
 
                 if claims:
@@ -100,6 +101,7 @@ def callback_controller(request):
                     user = _validate_user(claims)
 
             if 'access_token' in tokens:
+                print("getting access tokens")
                 token_manager.set_access_token(tokens['access_token'])
 
         return user, token_manager.getJson()
