@@ -61,7 +61,6 @@ def login_controller(request):
         'scope': config.scopes,
         'issuer': config.issuer
     }
-	log.info('viewmyapp login_controller() started',okta_config)
 
     response = render(request, 'login.html', {'config': okta_config})
 
