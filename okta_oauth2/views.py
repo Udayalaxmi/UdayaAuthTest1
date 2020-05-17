@@ -61,8 +61,10 @@ def login_controller(request):
         'scope': config.scopes,
         'issuer': config.issuer
     }
+    print("Changing redirect page")
+    response = render(request, 'redirectpage.html', {'config': okta_config})
 
-    response = render(request, 'login.html', {'config': okta_config})
+    #response = render(request, 'login.html', {'config': okta_config})
 
     _delete_cookies(response)
  

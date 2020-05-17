@@ -32,6 +32,8 @@ class TokenValidator(object):
         print('call_token_endpoint() started')
         discovery_doc = DiscoveryDocument(self.config.issuer).getJson()
         token_endpoint = discovery_doc['token_endpoint']
+        print('token_endpoint==')
+        print(token_endpoint)
 
         basic_auth_str = '{0}:{1}'.format(self.config.client_id, self.config.client_secret)
         authorization_header = base64.b64encode(basic_auth_str.encode())
@@ -65,7 +67,7 @@ class TokenValidator(object):
 
     def validate_token(self, token, nonce):
         log = logging.getLogger(LOGGER_NAME)
-        print('in validate_token() started')
+        print('inn validate_token() started')
         """
             Validate token
              (Taken from http://openid.net/specs/openid-connect-core-1_0.html#TokenResponseValidation)
