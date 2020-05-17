@@ -42,7 +42,7 @@
 
 
     });
-    alert("configurl")
+
 
    oktaSignIn.renderEl(
             { el: '#okta-login-container' },
@@ -50,6 +50,7 @@
                 if (res.status === 'SUCCESS') { res.session.setCookieAndRedirect(redirectUrl); }
             },
             function (err) {
+            print("Inn login.html err")
 
             }
     );
