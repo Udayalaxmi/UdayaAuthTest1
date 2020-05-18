@@ -7,6 +7,15 @@ LOG_FILE_PATH = './logs'
 LOG_FILE_NAME = os.path.join(LOG_FILE_PATH,'authlogs.log')
 LOGGER_NAME = 'oauth2log'
 
+ORG_URL = "https://dev-777014.okta.com"
+ISSUER = "https://dev-777014.okta.com/oauth2/default"
+CLIENT_ID = "0oacg4297PlnRyDbO4x6"
+CLIENT_SECRET = "DN_oQbfvhh02rctHMtcXUxnoKeXjnU3-wdXE9Wl_"
+SCOPES = "openid profile email"
+REDIRECT_URI = "https://stark-ridge-55239.herokuapp.com/oauth2/callback/"
+
+
+
 def call_userinfo_endpoint(issuer, token):
     # Get an instance of a logger
     log = logging.getLogger(LOGGER_NAME)
@@ -60,7 +69,10 @@ def _build_header(config):
     log = logging.getLogger(LOGGER_NAME)
     print('_build_header() started')
     # Builds the header for sending requests
-
+    if config.client_id is None:
+        config.client_id = CLIENT_ID
+    if config.client_secret is None:
+        config.client_secret = CLIENT_SECRET
     basic = '{}:{}'.format(config.client_id, config.client_secret)
     authorization_header = base64.b64encode(basic.encode())
 
