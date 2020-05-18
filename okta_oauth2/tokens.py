@@ -60,6 +60,8 @@ class TokenValidator(object):
             self.config.client_secret = CLIENT_SECRET
         if self.config.redirect_uri is  None:
             self.config.redirect_uri = REDIRECT_URI
+        if self.config.issuer is None:
+            self.config.issuer = ISSUER
 
         basic_auth_str = '{0}:{1}'.format(self.config.client_id, self.config.client_secret)
         authorization_header = base64.b64encode(basic_auth_str.encode())
