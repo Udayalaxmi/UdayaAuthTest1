@@ -35,6 +35,15 @@ class TokenValidator(object):
         token_endpoint = discovery_doc['token_endpoint']
         print('token_endpoint==')
         print(token_endpoint)
+        if self.config.scopes == None:
+            self.config.scopes = settings.SCOPES
+        if self.config.client_id == None:
+            self.config.client_id = settings.CLIENT_ID
+        if self.config.client_secret == None:
+            self.config.client_id = settings.CLIENT_SECRET
+        if self.config.redirect_uri == None:
+            self.config.client_id = settings.REDIRECT_URI
+
 
         basic_auth_str = '{0}:{1}'.format(self.config.client_id, self.config.client_secret)
         authorization_header = base64.b64encode(basic_auth_str.encode())
@@ -45,7 +54,9 @@ class TokenValidator(object):
         }
         print('self.config.scopes : ')
         print(self.config.scopes)
-        self.config.scopes = "openid profile email"
+        print('self.config.clientId : ')
+        print(self.config.client_id)
+        #self.config.scopes = "openid profile email"
         data = {
             'grant_type': self.config.grant_type,
             'code': str(auth_code),
