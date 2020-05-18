@@ -36,6 +36,7 @@ def get_context(request):
         if 'claims' in request.session['tokens']:
             context['claims'] = json.dumps(request.session['tokens']['claims'],
                                            sort_keys=True, indent=4)
+    print("Userinfo==%s",request.session['userInfo'])
 
     if 'userInfo' in request.session:
         context['userInfo'] = request.session['userInfo']
