@@ -88,8 +88,11 @@ def callback_controller(request):
 
         validator = TokenValidator(config)
         tokens = validator.call_token_endpoint(auth_code)
+        print("In Tokens of view====")
+        print(tokens)
 
         if tokens is not None:
+            print("inside token")
             if 'id_token' in tokens:
                 # Perform token validation
                 print("inside for token validation")
@@ -126,13 +129,16 @@ def callback_controller(request):
 
         # Verify state
         if state != cookie_state:
+            print("state not equal to cookie state so reverse login")
             raise Exception("Value {} does not match the assigned state".format(state))
             return HttpResponseRedirect(reverse('login_controller'))
 
         user, token_manager_json = _token_request(code, cookie_nonce)
         if user is None:
+            print("user is nonr")
             return redirect('/login')
         else:
+            print("user not none")
             login(request, user)
 
         request.session['tokens'] = token_manager_json

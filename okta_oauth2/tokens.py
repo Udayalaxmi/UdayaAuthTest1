@@ -52,6 +52,7 @@ class TokenValidator(object):
         }
 
         # Send token request
+        print("Sending token endpoint")
         r = requests.post(token_endpoint, headers=header, params=data)
         response = r.json()
 
@@ -74,6 +75,7 @@ class TokenValidator(object):
         """
 
         def _jwks(kid, issuer):
+            print("in jwks..")
             """
                 Internal:
                     Fetch public key from jwks_uri and caches it until the key rotates
