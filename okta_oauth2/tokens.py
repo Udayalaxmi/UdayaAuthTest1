@@ -4,6 +4,7 @@ from jose import jwt
 from jose import jws
 import requests
 from .models import DiscoveryDocument
+from django.conf import settings
 import base64
 import logging,sys
 import os
@@ -48,7 +49,8 @@ class TokenValidator(object):
         data = {
             'grant_type': self.config.grant_type,
             'code': str(auth_code),
-            'scope': ' '.join(self.config.scopes),
+            'scope':self.config.scopes,
+            #'scope': ' '.join(self.config.scopes),
             'redirect_uri': self.config.redirect_uri
         }
 
