@@ -64,6 +64,9 @@ def login_controller(request):
         'issuer': config.issuer
     }
     print("redirecting..")
+    print("config.issuer====")
+    print(config.issuer)
+    print(config.org_url)
     #response = render(request, 'redirectpage.html', {'config': okta_config})
 
     response = render(request, 'login.html', {'config': okta_config})
