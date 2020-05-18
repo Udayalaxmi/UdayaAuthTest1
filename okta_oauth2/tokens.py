@@ -38,6 +38,7 @@ class TokenValidator(object):
         basic_auth_str = '{0}:{1}'.format(self.config.client_id, self.config.client_secret)
         authorization_header = base64.b64encode(basic_auth_str.encode())
         header = {
+            'Accept':'application/json',
             'Authorization': 'Basic: ' + authorization_header.decode("utf-8"),
             'Content-Type': 'application/x-www-form-urlencoded'
         }
@@ -52,6 +53,10 @@ class TokenValidator(object):
         }
 
         # Send token request
+        print("header==")
+        print(header)
+        print("param ==")
+        print(data)
         print("Sending token endpoint")
         r = requests.post(token_endpoint, headers=header, params=data)
         response = r.json()
