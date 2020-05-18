@@ -97,6 +97,7 @@ def callback_controller(request):
                 # Perform token validation
                 print("inside for token validation")
                 claims = validator.validate_token(tokens['id_token'], nonce)
+                print("claims==%s",claims)
 
                 if claims:
                     token_manager.set_id_token(tokens['id_token'])

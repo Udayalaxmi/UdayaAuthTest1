@@ -234,8 +234,10 @@ class TokenValidator(object):
                 We relax this requirement during jwt validation. The Okta Session should be 
                 handled inside Okta - See https://developer.okta.com/docs/api/resources/sessions
             """
+            print("Decodedd token=====%s",decoded_token)
 
             return decoded_token
 
         except ValueError as err:
+            print("inn validation errorr")
             return err
