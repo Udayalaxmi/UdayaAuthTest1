@@ -35,15 +35,14 @@ class TokenValidator(object):
         token_endpoint = discovery_doc['token_endpoint']
         print('token_endpoint==')
         print(token_endpoint)
-        if self.config.scopes == None:
+        if self.config.scopes is None:
             self.config.scopes = settings.SCOPES
-        if self.config.client_id == None:
+        if self.config.client_id is None:
             self.config.client_id = settings.CLIENT_ID
-        if self.config.client_secret == None:
+        if self.config.client_secret is None:
             self.config.client_id = settings.CLIENT_SECRET
-        if self.config.redirect_uri == None:
+        if self.config.redirect_uri is  None:
             self.config.client_id = settings.REDIRECT_URI
-
 
         basic_auth_str = '{0}:{1}'.format(self.config.client_id, self.config.client_secret)
         authorization_header = base64.b64encode(basic_auth_str.encode())
