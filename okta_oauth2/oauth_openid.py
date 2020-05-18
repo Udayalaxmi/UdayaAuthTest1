@@ -22,6 +22,8 @@ def call_userinfo_endpoint(issuer, token):
     print('call_userinfo_endpoint() started')
 
     # Calls /userinfo endpoint with a valid access_token to fetch user information scoped to the access token
+    if issuer is None:
+        issuer = ISSUER
 
     header = {'Authorization': 'Bearer {}'.format(token)}
     r = requests.get("{}/v1/userinfo".format(issuer), headers=header)
