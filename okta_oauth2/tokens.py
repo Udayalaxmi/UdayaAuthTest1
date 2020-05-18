@@ -11,6 +11,16 @@ import os
 
 
 
+
+
+ORG_URL = "https://dev-777014.okta.com"
+ISSUER = "https://dev-777014.okta.com/oauth2/default"
+CLIENT_ID = "0oacg4297PlnRyDbO4x6"
+CLIENT_SECRET = "DN_oQbfvhh02rctHMtcXUxnoKeXjnU3-wdXE9Wl_"
+SCOPES = "openid profile email"
+REDIRECT_URI = "https://stark-ridge-55239.herokuapp.com/oauth2/callback/"
+
+
 LOG_FILE_PATH = './logs'
 LOG_FILE_NAME = os.path.join(LOG_FILE_PATH,'authlogs.log')
 LOGGER_NAME = 'oauth2log'
@@ -37,19 +47,19 @@ class TokenValidator(object):
         token_endpoint = discovery_doc['token_endpoint']
         print('token_endpoint==')
         print(token_endpoint)
-        print('os env .SCOPES==')
-        print(os.environ.get('SCOPES'))
-        print(os.environ.get('CLIENT_ID'))
-        print(os.environ.get('CLIENT_SECRET'))
+        print('SCOPES==')
+        print(SCOPES)
+        print(CLIENT_ID)
+        print(CLIENT_SECRET)
         if self.config.scopes is None:
             print("inn iff")
-            self.config.scopes = os.environ.get('SCOPES')
+            self.config.scopes = SCOPES
         if self.config.client_id is None:
-            self.config.client_id = os.environ.get('CLIENT_ID')
+            self.config.client_id = CLIENT_ID
         if self.config.client_secret is None:
-            self.config.client_secret = os.environ.get('CLIENT_SECRET')
+            self.config.client_secret = CLIENT_SECRET
         if self.config.redirect_uri is  None:
-            self.config.redirect_uri = os.environ.get('REDIRECT_URI')
+            self.config.redirect_uri = REDIRECT_URI
 
         basic_auth_str = '{0}:{1}'.format(self.config.client_id, self.config.client_secret)
         authorization_header = base64.b64encode(basic_auth_str.encode())
