@@ -35,7 +35,10 @@ class TokenValidator(object):
         token_endpoint = discovery_doc['token_endpoint']
         print('token_endpoint==')
         print(token_endpoint)
+        print('settings.SCOPES==')
+        print(settings.SCOPES)
         if self.config.scopes is None:
+            print("inn iff")
             self.config.scopes = settings.SCOPES
         if self.config.client_id is None:
             self.config.client_id = settings.CLIENT_ID
